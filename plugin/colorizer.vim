@@ -325,7 +325,7 @@ endfunction
 
 augroup Colorizer
     autocmd!
-    autocmd BufReadPre,BufEnter * :call s:init()
+    autocmd BufReadPre,BufEnter,Colorscheme * :call s:init()
 augroup END
 
 command! ColorizerToggle call s:toggle()
