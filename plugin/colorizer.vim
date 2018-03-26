@@ -36,7 +36,7 @@ if !exists('g:colorizer_events')
 endif
 
 if !exists('g:colorizer_enabled')
-    let g:colorizer_enabled = 0
+    let g:colorizer_enabled = 1
 endif
 
 function! s:detect2hex(r, g, b)
