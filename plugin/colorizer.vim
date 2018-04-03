@@ -134,7 +134,8 @@ function! s:syntax(cs)
     if strlen(a:cs['pattern']) == 0
         exec 'syn keyword ' . a:cs['name'] . ' ' . a:cs['keyword']
     else
-        exec 'syn match ' . a:cs['name'] . ' /' . escape(a:cs['pattern'], '/') . '/'
+        exec 'syn match ' . a:cs['name'] . ' /' . escape(a:cs['pattern'], '/') .
+                    \ '/ containedin=ALL contained'
     endif
 endfunction
 
