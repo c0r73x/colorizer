@@ -135,7 +135,7 @@ function! s:syntax(cs)
         exec 'syn keyword ' . a:cs['name'] . ' ' . a:cs['keyword']
     else
         exec 'syn match ' . a:cs['name'] . ' /' . escape(a:cs['pattern'], '/') .
-                    \ '/ containedin=ALL contained'
+                    \ '/ containedin=ALL'
     endif
 endfunction
 
@@ -306,6 +306,10 @@ function! s:init()
 
     if !exists('b:colorizer_store')
         let b:colorizer_store  = []
+    else
+        for l:cs in b:colorizer_store
+            exec 'syn clear ' . l:cs['name']
+        endfor
     endif
 
     for l:file in g:colorizer_colors
@@ -327,6 +331,7 @@ endfunction
 augroup Colorizer
     autocmd!
     autocmd BufReadPre,BufEnter,Colorscheme * :call s:init()
+    autocmd User NeotagsPost :call s:init()
 augroup END
 
 command! ColorizerToggle call s:toggle()
