@@ -329,4 +329,5 @@ let g:colorizer_colors_material = {
             \   'brown':      s:brown,
             \   'grey':       s:grey,
             \   'bluegrey':   s:bluegrey,
+            \   'fullWhite':  {'': '#ffffff'},
             \ }
