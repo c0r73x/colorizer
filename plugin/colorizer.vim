@@ -31,6 +31,7 @@ if !exists('g:colorizer_events')
     let g:colorizer_events = [
                 \   'CursorHold',
                 \   'InsertLeave',
+                \   'InsertChange',
                 \   'CursorMovedI',
                 \   'WinEnter',
                 \ ]
