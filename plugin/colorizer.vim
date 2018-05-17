@@ -29,7 +29,8 @@ endif
 
 if !exists('g:colorizer_events')
     let g:colorizer_events = [
-                \   'CursorMoved',
+                \   'CursorHold',
+                \   'InsertLeave',
                 \   'CursorMovedI',
                 \   'WinEnter',
                 \ ]
@@ -310,6 +311,8 @@ function! s:init()
         for l:cs in b:colorizer_store
             exec 'syn clear ' . l:cs['name']
         endfor
+
+        let b:colorizer_store  = []
     endif
 
     for l:file in g:colorizer_colors
@@ -325,12 +328,13 @@ function! s:init()
     endfor
 
     exec 'autocmd! Colorizer ' . join(g:colorizer_events, ',') . ' <buffer> call s:parse_buffer()'
+
     call s:parse_buffer()
 endfunction
 
 augroup Colorizer
     autocmd!
-    autocmd BufReadPre,BufEnter,Colorscheme * :call s:init()
+    autocmd BufReadPost,BufWritePost,Colorscheme * :call s:init()
     autocmd User NeotagsPost :call s:init()
 augroup END
 
